@@ -1,0 +1,20 @@
+version: '2.1'
+services:
+  node:
+    build: 
+      context: ./nodejs
+      dockerfile: Dockerfile
+    container_name: node-container
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./node:/app
+      - ./app/node_modules
+  react:
+    build: 
+      context: ./reactjs/project
+      dockerfile: /home/docker/reactjs-nodejs/reactjs/project/Dockerfile
+    container_name: react-container
+    ports:
+      - '3000:3000'
+    stdin_open: true

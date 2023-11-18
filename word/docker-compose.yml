@@ -1,0 +1,27 @@
+version: "2.1"
+services:
+  my_wp_site:
+    image: wordpress:6.1
+    ports:
+      - "8000:80"
+    restart: always
+    depends_on:
+      - mysql_db
+    environment:
+      WORDPRESS_DB_HOST: mysql_db:3306
+      WORDPRESS_DB_USER: new
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wpdb
+
+  mysql_db:
+    image: mysql:5.7
+    restart: always
+    volumes:
+       - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wpdb
+      MYSQL_USER: new
+      MYSQL_PASSWORD: wordpress
+volumes:
+    db_data: 

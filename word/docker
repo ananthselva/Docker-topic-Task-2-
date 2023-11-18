@@ -1,0 +1,25 @@
+version: "2.1"
+services:
+  my_wp_site:
+    image: wordpress:latest
+    ports:
+      - "8000:80"
+    restart: always
+    depends_on:
+      - mysql_db
+    environment:
+      WORDPRESS_DB_HOST: mysql_db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: admin
+      WORDPRESS_DB_NAME: ananth
+
+  mysql_db:
+    image: mysql:5.7
+    restart: always
+#    volumes:
+#       - db_data01:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: ananth02
+      MYSQL_USER: new
+      MYSQL_PASSWORD: Password@123
